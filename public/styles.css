@@ -1,26 +1,35 @@
 /* Custom CSS Styles */
-/* :root {
-  --primary-color: #10c3c9;
-  --secondary-color: orange;
-  --text-color: #141414;
+:root {
+  --primary-color: #355c7d;
+  --secondary-color: #6b5b95;
+  --bg-color: #bbe4e9;
+  --text-color: #032a33;
   --primary-font: Verdana, Geneva, Tahoma, sans-serif;
-  --secondary-font: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-} */
+  --secondary-font: 'Fira Sans Condensed', sans-serif;
+}
+
+.dark-mode {
+  --primary-color: #6b5b95;
+  --secondary-color: #feb236;
+  --bg-color: #355c7d;
+  --text-color: #f7cac9;
+}
 
 html {
   font-size: 15px;
 }
 
-/* body {
-  background-color: antiquewhite;
+body {
+  background-color: var(--bg-color);
   font-family: var(--secondary-font);
   color: var(--text-color);
-} */
+}
 
 p {
-  /* color: var(--text-color); */
+  font-size: 1rem;
+  color: var(--text-color);
   margin-bottom: 1.3rem;
-  /* font-family: var(--primary-font); */
+  font-family: var(--primary-font);
 }
 
 h1,
@@ -37,105 +46,39 @@ img {
   height: auto;
 }
 
-/* .section-container {
-  padding: 50px 0;
-} */
+.text-sun {
+  color: #f5b027;
+}
 
-/* .section-header {
+a.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.section-container {
+  padding: 50px 0;
+}
+
+.section-header {
   text-transform: capitalize;
   font-size: 1.5rem;
   text-align: center;
   font-weight: 800;
   color: var(--text-color);
   margin-bottom: 1.5rem;
-} */
-
-/* .btn-button {
-  text-transform: capitalize;
-  font-weight: bold;
-  background: var(--secondary-color);
-  border-radius: 5px;
-} */
-
-/* .btn-button:hover {
-  background-color: var(--primary-color);
-  color: white;
-  transition: all 0.6s ease;
-} */
-
-/* .position-sticky {
-  border-radius: 3px;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.09);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  z-index: 100;
-  padding: 1em;
-} */
-
-/* Header CSS Styles */
-/* a.logo {
-  text-transform: math-auto;
-  font-size: 1.3rem;
-  padding: 0 15px;
-  font-weight: bold;
-  font-family: var(--primary-font);
 }
-
-} */
-
-/* 
-.navbar-nav .nav-item {
-  margin: 0px 15px;
-  font-weight: bold;
-  text-transform: capitalize;
-}
-
-.navbar-nav .nav-item .nav-link {
-  color: var(--text-color);
-}
-
-.navbar-nav .nav-item .nav-link:hover {
-  color: var(--primary-color);
-  transition: all 0.6s ease;
-}
-
-.navbar-nav .nav-link.active,
-.navbar-nav .nav-link.show {
-  color: var(--primary-color);
-} */
-
-/* Home Page Hero Section */
-/* .bg-image {
-  position: relative;
-  background-image: url('../assets/images/banner-image.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 100vh;
-}
-
-.bg-image::before {
-  position: absolute;
-  content: '';
-  left: 0;
-  top: 0;
-  background: #000;
-  height: 100%;
-  width: 100%;
-  opacity: 0.4;
-  z-index: 1;
-} */
 
 /* Footer Styles */
-/* .footer {
+.footer {
   padding: 35px 0;
   background-color: var(--text-color);
 }
 
 .footer p {
   color: antiquewhite;
-} */
+}
 
 /* ------------------------------------
 ----------- Responsive Design ---------
@@ -146,6 +89,23 @@ img {
     font-size: 16px;
   }
 
+  p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 1.5rem;
+  }
+
+  a.logo {
+    font-size: 1.8rem;
+  }
+
   .section-container {
     padding: 60px 0;
   }
@@ -153,7 +113,24 @@ img {
 
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
   html {
-    font-size: 18px;
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 1.5rem;
+  }
+
+  a.logo {
+    font-size: 1.8rem;
   }
 
   .section-container {
@@ -163,7 +140,24 @@ img {
 
 @media screen and (min-width: 992px) {
   html {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 1.5rem;
+  }
+
+  a.logo {
+    font-size: 2rem;
   }
 
   .section-container {
