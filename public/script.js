@@ -10,6 +10,7 @@ toggleButton.addEventListener('click', () => {
   body.classList.toggle('dark-mode');
 });
 
+
 // Set current year in footer
 const yearSpan = document.getElementById('year');
 const currentYear = new Date().getFullYear();
