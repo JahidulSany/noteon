@@ -9,3 +9,10 @@ toggleButton.addEventListener('click', () => {
     : '<i class="fa-solid fa-moon text-dark"></i>';
   body.classList.toggle('dark-mode');
 });
+
+// Set current year in footer
+const yearSpan = document.getElementById('year');
+const currentYear = new Date().getFullYear();
+yearSpan.textContent = currentYear; 
+
+

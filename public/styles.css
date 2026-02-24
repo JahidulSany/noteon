@@ -10,8 +10,8 @@
 
 .dark-mode {
   --primary-color: #6b5b95;
-  --secondary-color: #feb236;
-  --bg-color: #355c7d;
+  --secondary-color: #bbe4e9;
+  --bg-color: #37353e;
   --text-color: #f7cac9;
 }
 
@@ -71,13 +71,12 @@ a.logo {
 }
 
 /* Footer Styles */
-.footer {
+footer {
   padding: 35px 0;
-  background-color: var(--text-color);
 }
 
 .footer p {
-  color: antiquewhite;
+  color: var(--text-color);
 }
 
 /* ------------------------------------
@@ -109,6 +108,10 @@ a.logo {
   .section-container {
     padding: 60px 0;
   }
+
+  footer {
+    padding: 40px 0;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
@@ -127,6 +130,10 @@ a.logo {
   h5,
   h6 {
     margin-bottom: 1.5rem;
+  }
+
+  footer {
+    padding: 50px 0;
   }
 
   a.logo {
@@ -154,6 +161,10 @@ a.logo {
   h5,
   h6 {
     margin-bottom: 1.5rem;
+  }
+
+  footer {
+    padding: 70px 0;
   }
 
   a.logo {
