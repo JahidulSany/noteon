@@ -58,6 +58,14 @@ app.post('/note', async (req, res) => {
   }
 });
 
+// Handle GET request to retrieve stored data
+app.get("/notes", (req, res) => {
+  const notes = readData();
+  res.json(notes);
+});
+
+
+
 // Wildcard route to handle undefined routes
 app.use((req, res) => {
   res.status(404).send("Route not found");
