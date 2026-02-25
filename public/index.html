@@ -36,7 +36,85 @@
       </div>
     </header>
     <main>
-      <h1 class="text-center">Noteone!!!</h1>
+      <section class="container-fluid section-container mx-md-auto">
+        <div class="row vh-100">
+          <div class="col-md-3 bg-light border-end p-3">
+            <button
+              class="btn btn-primary w-100 mb-3"
+              id="newNoteBtn"
+              data-bs-toggle="modal"
+              data-bs-target="#notesModal"
+            >
+              New Note +
+            </button>
+            <div
+              class="modal fade"
+              id="notesModal"
+              tabindex="-1"
+              aria-labelledby="notesModalLabel"
+              aria-hidden="true"
+            >
+              <div
+                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+              >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="notesModalLabel">
+                      <form>
+                        <label for="#noteTitle">Note Title:</label>
+                        <input type="text" name="note-title" id="titleInput" />
+                      </form>
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <textarea
+                        class="p-3"
+                        name="notes-content"
+                        id="contentInput"
+                        cols="50"
+                        rows="10"
+                        placeholder="Write your note here"
+                      ></textarea>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      onclick="discardInput()"
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button
+                      onclick="saveInput()"
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-dismiss="modal"
+                    >
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="notesList"></div>
+          </div>
+
+          <div class="col-md-9 p-4">
+            <h3 id="noteTitle"></h3>
+            <hr />
+            <p id="noteContent"></p>
+          </div>
+        </div>
+      </section>
     </main>
     <footer>
       <div
@@ -51,15 +129,16 @@
             >Jahidul Sany</a
           >
         </div>
-        <p class="mb-2">&copy; <span id="year"></span> Noteon. All rights reserved.</p>
+        <p class="mb-2">
+          &copy; <span id="year"></span> Noteon. All rights reserved.
+        </p>
       </div>
     </footer>
 
     <!-- ------- ------ ----- ----- ---- ---- ---- ---- --- --- ---- --- -->
     <!-- ------- ------  ****************************** --- --- ---- --- -->
     <!-- ------- ------ ----- ----- ---- ---- ---- ---- --- --- ---- --- -->
-   
-   
+
     <!-- Font Awesome Kit -->
     <script
       src="https://kit.fontawesome.com/3ca77bf421.js"

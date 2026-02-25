@@ -10,10 +10,30 @@ toggleButton.addEventListener('click', () => {
   body.classList.toggle('dark-mode');
 });
 
-
 // Set current year in footer
 const yearSpan = document.getElementById('year');
 const currentYear = new Date().getFullYear();
-yearSpan.textContent = currentYear; 
+yearSpan.textContent = currentYear;
 
+// Note-taking functionality
+const titleInput = document.getElementById('titleInput');
+const contentInput = document.getElementById('contentInput');
+const newNoteBtn = document.getElementById('newNoteBtn');
+const notesList = document.getElementById('notesList');
+const noteTitle = document.getElementById('noteTitle');
+const noteContent = document.getElementById('noteContent');
 
+// Discard Button, nothing will save when clicked
+const discardInput = () => {
+  titleInput.value = '';
+  contentInput.value = '';
+};
+
+// Will Save the note title and content when clicked
+const saveInput = () => {
+  notesList.textContent = titleInput.value.trim();
+  noteTitle.textContent = titleInput.value.trim();
+  noteContent.textContent = contentInput.value.trim();
+  titleInput.value = '';
+  contentInput.value = '';
+};
