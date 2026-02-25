@@ -11,12 +11,17 @@
   },
   {
     "id": "af92ee38-f47e-4861-9e9c-0287313eb7d5",
-    "title": "CSS Framework - Tailwind CSS",
+    "title": "Tailwind CSS",
     "content": "TailwindCSS is a utility-first CSS framework for rapidly building custom user interfaces. It provides a set of low-level utility classes that you can compose to build any design, directly in your markup."
   },
   {
     "id": "c401d7f9-4745-4823-b569-64ed5b3d518c",
     "title": "ExpressJS",
     "content": "A minimalistic web framework for Node.js that provides a robust set of features to develop web and mobile applications."
+  },
+  {
+    "id": "1d43a4d0-a6d7-4449-9f84-625738fa7b4a",
+    "title": "Relational Database Management System",
+    "content": "MySQL, PostgreSQL, and SQLite are popular relational database management systems. They use SQL for data manipulation and querying. Each system has its own strengths and is suitable for different types of applications."
   }
 ]

@@ -86,6 +86,23 @@ app.put('/notes/:id', (req, res) => {
   });
 });
 
+// Handle PATCH request to partially update data by ID
+app.patch('/notes/:id', (req, res) => {
+  const allNotes = readData();
+  const { id } = req.params;
+  const index = allNotes.findIndex((note) => note.id === id);
+  if (index === -1) {
+    return res.status(404).json({ message: 'Note not found' });
+  }
+  allNotes[index] = { ...allNotes[index], ...req.body };
+  writeData(allNotes);
+  res.json({
+    message: 'Note Updated Successfully',
+    notes: allNotes[index],
+  });
+});
+
+
 // Wildcard route to handle undefined routes
 app.use((req, res) => {
   res.status(404).send('Route not found');
