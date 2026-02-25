@@ -31,9 +31,20 @@ const discardInput = () => {
 
 // Will Save the note title and content when clicked
 const saveInput = () => {
-  notesList.textContent = titleInput.value.trim();
+  const newListEl = document.createElement('p');
+  newListEl.innerHTML = '';
+
+  newListEl.style.backgroundColor = '#e9ecef';
+  newListEl.style.color = 'dark';
+  newListEl.style.borderRadius = '5px';
+  newListEl.style.padding = '5px';
+
+  newListEl.textContent = titleInput.value.trim();
+  notesList.appendChild(newListEl);
+
   noteTitle.textContent = titleInput.value.trim();
   noteContent.textContent = contentInput.value.trim();
+
   titleInput.value = '';
   contentInput.value = '';
 };
