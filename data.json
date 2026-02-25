@@ -18,5 +18,10 @@
     "id": "7b78777c-6d8e-4127-ad77-84778bbf0c09",
     "title": "Daily Journal",
     "content": "Today I worked on the frontend layout using Bootstrap."
+  },
+  {
+    "id": "e7b624d3-0711-433a-8eb0-42d1c0bed228",
+    "title": "Relational Database Management System",
+    "content": "MySQL, PostgreSQL, and SQLite are popular relational database management systems. They use SQL for data manipulation and querying. Each system has its own strengths and is suitable for different types of applications."
   }
 ]

@@ -39,7 +39,17 @@ app.get('/', async (req, res) => {
   try {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
   } catch (err) {
-    res.status(404).json({ error: err });
+    res.status(404).json({ error: err.message });
+  }
+});
+
+// Handle GET request to retrieve stored data
+app.get('/notes', (req, res) => {
+  try {
+    const notes = readData();
+    res.json(notes);
+  } catch (err) {
+    res.status(404).json({ error: err.message });
   }
 });
 
@@ -54,21 +64,25 @@ app.post('/note', async (req, res) => {
       .status(201)
       .json({ message: 'Note added successfully', notes: newNote });
   } catch (err) {
-    res.status(500).json({ error: err });
+    res.status(500).json({ error: err.message });
   }
 });
 
-// Handle GET request to retrieve stored data
-app.get("/notes", (req, res) => {
-  const notes = readData();
-  res.json(notes);
-});
 
+// Handle GET request to retrieve data by ID
+app.get('/notes/:id', (req, res) => {
+  const allNotes = readData();
+  const note = allNotes.find((note) => note.id === req.params.id);
+  if (!note) {
+    return res.status(404).json({ message: 'No Note is not found with this ID' });
+  }
+  res.status(200).json({note});
+});
 
 
 // Wildcard route to handle undefined routes
 app.use((req, res) => {
-  res.status(404).send("Route not found");
+  res.status(404).send('Route not found');
 });
 
 // Start the server and listen on the specified port
