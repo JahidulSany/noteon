@@ -25,8 +25,7 @@ const readData = () => {
     return [];
   }
   const file = fs.readFileSync(dataFilePath, 'utf-8');
-  const data = file.trim() ? JSON.parse(file) : [];
-  return data;
+  return file.trim() ? JSON.parse(file) : [];
 };
 
 // Function to write data to the JSON file
@@ -35,50 +34,57 @@ const writeData = (data) => {
 };
 
 // Handle GET request at the root route
-app.get('/', async (req, res) => {
-  try {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-  } catch (err) {
-    res.status(404).json({ error: err.message });
-  }
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Handle POST request to save new data with a unique ID
+app.post('/note', (req, res) => {
+  const currentNote = readData();
+  const newNote = {
+    id: uuidv4(),
+    title: req.body.title,
+    content: req.body.content,
+  };
+  currentNote.push(newNote);
+  writeData(currentNote);
+  res.status(201).json({ message: 'Note added successfully', note: newNote });
 });
 
 // Handle GET request to retrieve stored data
 app.get('/notes', (req, res) => {
-  try {
-    const notes = readData();
-    res.json(notes);
-  } catch (err) {
-    res.status(404).json({ error: err.message });
-  }
+  const notes = readData();
+  res.json(notes);
 });
-
-// Handle POST request to save new data with a unique ID
-app.post('/note', async (req, res) => {
-  try {
-    const newNote = { id: uuidv4(), ...req.body };
-    const currentNote = readData();
-    currentNote.push(newNote);
-    writeData(currentNote);
-    res
-      .status(201)
-      .json({ message: 'Note added successfully', notes: newNote });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
 
 // Handle GET request to retrieve data by ID
 app.get('/notes/:id', (req, res) => {
   const allNotes = readData();
-  const note = allNotes.find((note) => note.id === req.params.id);
+  const { id } = req.params;
+  const note = allNotes.find((note) => note.id === id);
   if (!note) {
-    return res.status(404).json({ message: 'No Note is not found with this ID' });
+    return res
+      .status(404)
+      .json({ message: 'No Note is not found with this ID' });
   }
-  res.status(200).json({note});
+  res.status(200).json({ note: note });
 });
 
+// Handle PUT request to fully update data by ID
+app.put('/notes/:id', (req, res) => {
+  const allNotes = readData();
+  const { id } = req.params;
+  const index = allNotes.findIndex((note) => note.id === id);
+  if (index === -1) {
+    return res.status(404).json({ message: 'Note not found' });
+  }
+  allNotes[index] = { id, title: req.body.title, content: req.body.content };
+  writeData(allNotes);
+  res.json({
+    message: 'Note Updated Successfully',
+    notes: allNotes[index],
+  });
+});
 
 // Wildcard route to handle undefined routes
 app.use((req, res) => {

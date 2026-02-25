@@ -1,27 +1,22 @@
 [
   {
-    "id": "efcc2df5-b322-4da8-b0b5-5e72a7634dcd",
-    "language": "js",
-    "framework": "express"
+    "id": "c675eeb6-1e13-4a94-9e4c-b3f6ac68923e",
+    "title": "React",
+    "content": "A javascript library for building user interfaces"
   },
   {
-    "id": "11961a91-d208-4f94-bbfb-8039e761cb4d",
-    "title": "Project Ideas",
-    "content": "Build a notes app using Node.js and Express."
+    "id": "0b17ca78-75e9-4329-93d1-83c982c78097",
+    "title": "Next.js",
+    "content": "A React framework for building server-rendered React applications. It enables developers to create dynamic and interactive web applications with ease."
   },
   {
-    "id": "b0c51d47-c75c-4499-8835-8af2ca39642c",
-    "title": "Learning Plan",
-    "content": "Master JavaScript. Learn React. Understand REST APIs. Study system design basics."
+    "id": "af92ee38-f47e-4861-9e9c-0287313eb7d5",
+    "title": "CSS Framework - Tailwind CSS",
+    "content": "TailwindCSS is a utility-first CSS framework for rapidly building custom user interfaces. It provides a set of low-level utility classes that you can compose to build any design, directly in your markup."
   },
   {
-    "id": "7b78777c-6d8e-4127-ad77-84778bbf0c09",
-    "title": "Daily Journal",
-    "content": "Today I worked on the frontend layout using Bootstrap."
-  },
-  {
-    "id": "e7b624d3-0711-433a-8eb0-42d1c0bed228",
-    "title": "Relational Database Management System",
-    "content": "MySQL, PostgreSQL, and SQLite are popular relational database management systems. They use SQL for data manipulation and querying. Each system has its own strengths and is suitable for different types of applications."
+    "id": "c401d7f9-4745-4823-b569-64ed5b3d518c",
+    "title": "ExpressJS",
+    "content": "A minimalistic web framework for Node.js that provides a robust set of features to develop web and mobile applications."
   }
 ]
