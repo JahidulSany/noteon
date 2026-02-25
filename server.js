@@ -102,6 +102,21 @@ app.patch('/notes/:id', (req, res) => {
   });
 });
 
+// Handle DELETE request to delete data by ID
+app.delete('/notes/:id', (req, res) => {
+  const allNotes = readData();
+  const index = allNotes.findIndex((note) => note.id === req.params.id);
+  if (index === -1) {
+    return res.status(404).json({ message: 'Note not found' });
+  }
+  const deletedNote = allNotes[index];
+  allNotes.splice(index, 1);
+  writeData(allNotes)
+  res.json({
+    note: deletedNote,
+    message: 'Note is deleted successfully',
+  });
+});
 
 // Wildcard route to handle undefined routes
 app.use((req, res) => {
