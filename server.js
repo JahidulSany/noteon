@@ -2,7 +2,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { v4: uuid } = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 // Create an instance of an Express application
 const app = express();
@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 // Middleware to parse incoming JSON requests
 app.use(express.json());
 
-// Serve static files from the 'public' directory
+// Middleware to Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Define the path to the JSON file
@@ -24,8 +24,9 @@ const readData = () => {
   if (!fs.existsSync(dataFilePath)) {
     return [];
   }
-  const data = fs.readFileSync(dataFilePath);
-  return JSON.parse(data);
+  const file = fs.readFileSync(dataFilePath, 'utf-8');
+  const data = file.trim() ? JSON.parse(file) : [];
+  return data;
 };
 
 // Function to write data to the JSON file
@@ -34,8 +35,27 @@ const writeData = (data) => {
 };
 
 // Handle GET request at the root route
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('/', async (req, res) => {
+  try {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  } catch (err) {
+    res.status(404).json({ error: err });
+  }
+});
+
+// Handle POST request to save new data with a unique ID
+app.post('/note', async (req, res) => {
+  try {
+    const newNote = { id: uuidv4(), ...req.body };
+    const currentNote = readData();
+    currentNote.push(newNote);
+    writeData(currentNote);
+    res
+      .status(201)
+      .json({ message: 'Note added successfully', notes: newNote });
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
 });
 
 // Wildcard route to handle undefined routes
@@ -47,5 +67,3 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-

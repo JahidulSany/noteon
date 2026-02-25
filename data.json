@@ -1,0 +1,22 @@
+[
+  {
+    "id": "efcc2df5-b322-4da8-b0b5-5e72a7634dcd",
+    "language": "js",
+    "framework": "express"
+  },
+  {
+    "id": "11961a91-d208-4f94-bbfb-8039e761cb4d",
+    "title": "Project Ideas",
+    "content": "Build a notes app using Node.js and Express."
+  },
+  {
+    "id": "b0c51d47-c75c-4499-8835-8af2ca39642c",
+    "title": "Learning Plan",
+    "content": "Master JavaScript. Learn React. Understand REST APIs. Study system design basics."
+  },
+  {
+    "id": "7b78777c-6d8e-4127-ad77-84778bbf0c09",
+    "title": "Daily Journal",
+    "content": "Today I worked on the frontend layout using Bootstrap."
+  }
+]
