@@ -63,6 +63,7 @@
                       <form>
                         <div class="form-floating">
                           <input
+                            required
                             class="form-control input-form-control"
                             type="text"
                             name="title"
@@ -84,10 +85,11 @@
                     <form>
                       <div class="form-floating">
                         <textarea
+                          required
                           class="form-control"
                           name="content"
                           id="contentInput"
-                          style="height: 200px;"
+                          style="height: 200px"
                           placeholder="Write your note here"
                         ></textarea>
                         <label for="contentInput">Write your note here</label>
@@ -96,16 +98,16 @@
                   </div>
                   <div class="modal-footer">
                     <button
-                      onclick="discardInput()"
-                      type="button"
+                      id="closeButton"
+                      type="reset"
                       class="btn btn-secondary"
                       data-bs-dismiss="modal"
                     >
                       Close
                     </button>
                     <button
-                      onclick="saveInput()"
-                      type="button"
+                      id="saveButton"
+                      type="submit"
                       class="btn btn-primary"
                       data-bs-dismiss="modal"
                     >

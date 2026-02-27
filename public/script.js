@@ -15,36 +15,117 @@ const yearSpan = document.getElementById('year');
 const currentYear = new Date().getFullYear();
 yearSpan.textContent = currentYear;
 
-// Note-taking functionality
-const titleInput = document.getElementById('titleInput');
-const contentInput = document.getElementById('contentInput');
-const newNoteBtn = document.getElementById('newNoteBtn');
-const notesList = document.getElementById('notesList');
-const noteTitle = document.getElementById('noteTitle');
-const noteContent = document.getElementById('noteContent');
+///////---------------------------------------------------//////////
+/////// --------------------------------------------------//////////
 
-// Discard Button, nothing will save when clicked
-const discardInput = () => {
-  titleInput.value = '';
-  contentInput.value = '';
-};
+document.addEventListener('DOMContentLoaded', () => {
+  // Note-taking functionality
+  const titleInput = document.getElementById('titleInput');
+  const contentInput = document.getElementById('contentInput');
+  const newNoteBtn = document.getElementById('newNoteBtn');
+  const notesList = document.getElementById('notesList');
+  const noteTitle = document.getElementById('noteTitle');
+  const noteContent = document.getElementById('noteContent');
 
-// Will Save the note title and content when clicked
-const saveInput = () => {
-  const newListEl = document.createElement('p');
-  newListEl.innerHTML = '';
+  // Function to fetch data from the backend
+  const fetchData = async (selected = false) => {
+    try {
+      const response = await fetch('/notes');
+      const notes = await response.json();
+      notesList.innerHTML = ''; // Clear the list before rendering
 
-  newListEl.style.backgroundColor = '#e9ecef';
-  newListEl.style.color = 'dark';
-  newListEl.style.borderRadius = '5px';
-  newListEl.style.padding = '5px';
+      // IF no note exists, Get Started will appear
+      if (notes.length === 0) {
+        const createNoteMsg = document.createElement('p');
 
-  newListEl.textContent = titleInput.value.trim();
-  notesList.appendChild(newListEl);
+        createNoteMsg.textContent = 'Get Started';
+        createNoteMsg.style.backgroundColor = '#e9ecef';
+        createNoteMsg.style.color = 'black';
+        createNoteMsg.style.borderRadius = '5px';
+        createNoteMsg.style.padding = '5px';
 
-  noteTitle.textContent = titleInput.value.trim();
-  noteContent.textContent = contentInput.value.trim();
+        notesList.appendChild(createNoteMsg);
 
-  titleInput.value = '';
-  contentInput.value = '';
-};
+        noteTitle.textContent = 'No Note';
+        noteContent.textContent =
+          'Click the New Note + button to create a note';
+        return;
+      }
+
+      notes.forEach((note, index) => {
+        const newListEl = document.createElement('p');
+
+        newListEl.style.backgroundColor = '#e9ecef';
+        newListEl.style.color = 'black';
+        newListEl.style.borderRadius = '5px';
+        newListEl.style.padding = '5px';
+        newListEl.style.cursor = 'pointer';
+
+        newListEl.textContent = note.title;
+
+        newListEl.addEventListener('click', () => {
+          const allNotesLists = notesList.querySelectorAll('p');
+          allNotesLists.forEach((noteList) => {
+            noteList.style.backgroundColor = '#e9ecef';
+          });
+
+          newListEl.style.backgroundColor = '#719cc7';
+
+          noteTitle.textContent = note.title;
+          noteContent.textContent = note.content;
+        });
+
+        notesList.appendChild(newListEl);
+
+        if (!selected && index === 0) {
+          return newListEl.click();
+        } else if (selected && index === notes.length - 1) {
+          return newListEl.click();
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  // Discard Button, nothing will save when clicked
+  document.getElementById('closeButton').addEventListener('click', () => {
+    titleInput.value = '';
+    contentInput.value = '';
+  });
+
+  // Save the note title and content to the backend
+  document.getElementById('saveButton').addEventListener('click', async () => {
+    const title = titleInput.value.trim();
+    const content = contentInput.value.trim();
+
+    if (!title || !content) {
+      alert('Please fill in both fields');
+      return;
+    }
+
+    const newNote = {
+      title,
+      content,
+    };
+
+    try {
+      const response = await fetch('/note', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newNote),
+      });
+
+      if (response.ok) {
+        titleInput.value = ''; // Clear input field
+        contentInput.value = ''; // Clear textarea field
+        fetchData(true); // Refresh the list
+      }
+    } catch (error) {
+      console.error('Error adding data:', error);
+    }
+  });
+
+  // Fetch data on page load
+  fetchData();
+});

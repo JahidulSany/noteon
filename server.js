@@ -38,6 +38,12 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Handle GET request to retrieve stored data
+app.get('/notes', (req, res) => {
+  const notes = readData();
+  res.json(notes);
+});
+
 // Handle POST request to save new data with a unique ID
 app.post('/note', (req, res) => {
   const currentNote = readData();
@@ -49,12 +55,6 @@ app.post('/note', (req, res) => {
   currentNote.push(newNote);
   writeData(currentNote);
   res.status(201).json({ message: 'Note added successfully', note: newNote });
-});
-
-// Handle GET request to retrieve stored data
-app.get('/notes', (req, res) => {
-  const notes = readData();
-  res.json(notes);
 });
 
 // Handle GET request to retrieve data by ID

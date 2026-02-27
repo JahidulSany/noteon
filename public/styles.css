@@ -12,7 +12,7 @@
   --primary-color: #6b5b95;
   --secondary-color: #bbe4e9;
   --bg-color: #37353e;
-  --text-color: #f7cac9;
+  --text-color: #A0A0A0;
 }
 
 html {
@@ -22,7 +22,7 @@ html {
 body {
   background-color: var(--bg-color);
   font-family: var(--secondary-font);
-  color: var(--text-color);
+  color: var(--secondary-color);
 }
 
 p {
