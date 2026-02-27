@@ -22,13 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Note-taking functionality
   const titleInput = document.getElementById('titleInput');
   const contentInput = document.getElementById('contentInput');
-  const newNoteBtn = document.getElementById('newNoteBtn');
   const notesList = document.getElementById('notesList');
   const noteTitle = document.getElementById('noteTitle');
   const noteContent = document.getElementById('noteContent');
 
+  let currentNoteId = null;
+
   // Function to fetch data from the backend
-  const fetchData = async (selected = false) => {
+  const fetchData = async (newCreatedNote = false) => {
     try {
       const response = await fetch('/notes');
       const notes = await response.json();
@@ -53,18 +54,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       notes.forEach((note, index) => {
+        const wrapper = document.createElement('div');
         const newListEl = document.createElement('p');
+        const deleteButton = document.createElement('button');
 
-        newListEl.style.backgroundColor = '#e9ecef';
-        newListEl.style.color = 'black';
-        newListEl.style.borderRadius = '5px';
-        newListEl.style.padding = '5px';
+        wrapper.classList.add(
+          'd-flex',
+          'justify-content-around',
+          'align-items',
+          'mb-2',
+        );
+        newListEl.classList.add(
+          'd-inline-block',
+          'rounded-1',
+          'w-100',
+          'p-2',
+          'me-2',
+          'text-dark',
+          'text-nowrap',
+          'overflow-auto',
+        );
         newListEl.style.cursor = 'pointer';
+        newListEl.style.backgroundColor = '#e9ecef';
 
         newListEl.textContent = note.title;
 
+        deleteButton.classList.add('btn', 'btn-danger');
+        ((deleteButton.style.maxHeight = '45px'),
+          (deleteButton.textContent = 'Delete'));
+
         newListEl.addEventListener('click', () => {
-          const allNotesLists = notesList.querySelectorAll('p');
+          const allNotesLists = notesList.querySelectorAll('#notesList p');
           allNotesLists.forEach((noteList) => {
             noteList.style.backgroundColor = '#e9ecef';
           });
@@ -73,15 +93,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
           noteTitle.textContent = note.title;
           noteContent.textContent = note.content;
+          currentNoteId = note.id;
         });
 
-        notesList.appendChild(newListEl);
+        wrapper.appendChild(newListEl);
+        wrapper.appendChild(deleteButton);
+        notesList.appendChild(wrapper);
 
-        if (!selected && index === 0) {
-          return newListEl.click();
-        } else if (selected && index === notes.length - 1) {
-          return newListEl.click();
+        if (!newCreatedNote && index === 0) {
+          newListEl.click();
+        } else if (newCreatedNote && index === notes.length - 1) {
+          newListEl.click();
         }
+
+        deleteButton.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          await fetch(`/notes/${note.id}`, {
+            method: 'DELETE',
+          });
+
+          if (currentNoteId === note.id) {
+            noteTitle.style = '';
+            noteContent.value = '';
+            currentNoteId = null;
+          }
+          fetchData();
+        });
       });
     } catch (error) {
       console.error('Error fetching data:', error);

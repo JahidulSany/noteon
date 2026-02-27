@@ -5,19 +5,9 @@
     "content": "A javascript library for building user interfaces"
   },
   {
-    "id": "0b17ca78-75e9-4329-93d1-83c982c78097",
-    "title": "Next.js",
-    "content": "A React framework for building server-rendered React applications. It enables developers to create dynamic and interactive web applications with ease."
-  },
-  {
     "id": "af92ee38-f47e-4861-9e9c-0287313eb7d5",
     "title": "Tailwind CSS",
     "content": "TailwindCSS is a utility-first CSS framework for rapidly building custom user interfaces. It provides a set of low-level utility classes that you can compose to build any design, directly in your markup."
-  },
-  {
-    "id": "c401d7f9-4745-4823-b569-64ed5b3d518c",
-    "title": "ExpressJS",
-    "content": "A minimalistic web framework for Node.js that provides a robust set of features to develop web and mobile applications."
   },
   {
     "id": "1d43a4d0-a6d7-4449-9f84-625738fa7b4a",
@@ -30,8 +20,8 @@
     "content": "HTML, CSS, JavaScript, React, NodeJS, ExpressJS, SQL, Sequelize and API Development"
   },
   {
-    "id": "b08f0d7e-9e9e-4816-aaf4-7e15ee3d57ef",
-    "title": "Databases and ORMS",
-    "content": "Databases: SQL, MySQL, PostgreSQL, Microsoft SQL-Lite, etc. ORMs: Sequelize, Prisma, Drizzle, etc"
+    "id": "18f49d01-cdba-4137-aa89-6712e3f3bac2",
+    "title": "Backend Dev",
+    "content": "Nodesjs and Expressjs"
   }
 ]
