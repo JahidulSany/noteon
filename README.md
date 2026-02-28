@@ -2,13 +2,13 @@
 
 # ✨ Project Description
 
-Noteon is a Full Stack Notes Application using Node and Express that allows users to:
-• Create new notes
-• Read existing notes
-• Update notes
-• Delete notes
+Noteon is a Full Stack Notes Application using Node and Express that allows users to: <br>
+• Create new notes <br>
+• Read existing notes <br>
+• Update notes <br>
+• Delete notes <br>
 
-Github Repo: https://github.com/JahidulSany/noteon
+Github Repo: https://github.com/JahidulSany/noteon <br>
 Live Link: https://noteon-kmdp.onrender.com/
 
 # 🛠️ Installation Instructions
