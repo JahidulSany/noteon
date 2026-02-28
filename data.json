@@ -1,5 +1,10 @@
 [
   {
+    "id": "c675eeb6-1e13-4a94-9e4c-b3f6ac68923e",
+    "title": "React JS",
+    "content": "A JavaScript library for building user interfaces. I Love to code with React."
+  },
+  {
     "id": "af92ee38-f47e-4861-9e9c-0287313eb7d5",
     "title": "Tailwind CSS",
     "content": "TailwindCSS is a utility-first CSS framework for rapidly building custom user interfaces. It provides a set of low-level utility classes that you can compose to build any design, directly in your markup."
@@ -12,11 +17,16 @@
   {
     "id": "02f4a620-234d-47fb-a846-5bf4723da3ab",
     "title": "Full Stack Dev",
-    "content": "HTML, CSS, JavaScript, React, NodeJS, ExpressJS, SQL, Sequelize and API Development"
+    "content": "HTML, CSS, JavaScript, React, NodeJS, ExpressJS, SQL, Sequelize and API Development."
   },
   {
     "id": "18f49d01-cdba-4137-aa89-6712e3f3bac2",
-    "title": "Backend Dev",
-    "content": "Nodesjs and Expressjs"
+    "title": "Backend Development",
+    "content": "Nodesjs and Expressjs. Python Django or Flask?no, no, no, I want FastAPI."
+  },
+  {
+    "id": "af4eb0b4-4e0d-44d6-b4a5-d1574dfecf2e",
+    "title": "Note Application",
+    "content": "Bootstrap, vanilla javascript, nodejs and Express"
   }
 ]

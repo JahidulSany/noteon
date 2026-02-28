@@ -27,7 +27,7 @@
   <body>
     <header>
       <div
-        class="container d-flex justify-content-around align-items-center pt-5"
+        class="container d-flex justify-content-around align-items-center pt-5 me-5"
       >
         <a class="navbar-brand logo" href="#">Noteon</a>
         <button id="toggleButton" class="border-0 bg-transparent fs-3">
@@ -121,16 +121,18 @@
           </div>
 
           <div class="col-md-8 p-4">
-            <h3 id="noteTitle"></h3>
+            <h3 id="noteTitle" contenteditable="true"></h3>
             <hr />
-            <div id="noteContent"></div>
+            <form>
+              <textarea id="noteContent"></textarea>
+            </form>
           </div>
         </div>
       </section>
     </main>
     <footer>
       <div
-        class="container p-3 mx-md-auto text-center flex-column flex-md-row d-flex justify-content-center justify-content-md-around align-items-center"
+        class="container p-3 mx-md-auto text-center d-flex flex-column flex-md-row justify-content-center justify-content-md-around align-items-center"
       >
         <div class="mb-2">
           Designed & Developed by
@@ -148,7 +150,7 @@
     </footer>
 
     <!-- ------- ------ ----- ----- ---- ---- ---- ---- --- --- ---- --- -->
-    <!-- ------- ------  ****************************** --- --- ---- --- -->
+    <!-- --- ---  ************** JavaScript Script Links *********** --- -- --- -->
     <!-- ------- ------ ----- ----- ---- ---- ---- ---- --- --- ---- --- -->
 
     <!-- Font Awesome Kit -->

@@ -12,7 +12,7 @@
   --primary-color: #6b5b95;
   --secondary-color: #bbe4e9;
   --bg-color: #37353e;
-  --text-color: #A0A0A0;
+  --text-color: #a0a0a0;
 }
 
 html {
@@ -70,6 +70,63 @@ a.logo {
 
 .input-form-control {
   width: 200px;
+}
+
+#noteTitle {
+  font-family: var(--primary-font);
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  padding: 10px 5px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+#noteTitle:focus {
+  background-color: #f8f9fa;
+  box-shadow: 0 0 0 2px #0d6efd33;
+}
+
+#noteContent {
+  width: 100%;
+  min-height: 500px;
+  resize: none;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  font-family: var(--secondary-font);
+  transition: all 0.2s ease-in-out;
+}
+
+#noteContent:focus {
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px #0d6efd33;
+}
+
+body.dark-mode #noteTitle {
+  color: #ffffff;
+}
+
+body.dark-mode #noteTitle:focus {
+  background-color: #2c2c2c;
+  box-shadow: 0 0 0 2px #4dabf733;
+}
+
+body.dark-mode #noteContent {
+  background-color: #2c2c2c;
+  color: #ffffff;
+}
+
+body.dark-mode #noteContent:focus {
+  background-color: #1f1f1f;
+  box-shadow: 0 0 0 2px #4dabf733;
 }
 
 /* Footer Styles */
@@ -175,6 +232,14 @@ footer {
   .notes-container {
     padding: 20px;
     margin: 30px;
+  }
+
+  #noteTitle {
+    font-size: 1.5rem;
+  }
+
+  #noteContent {
+    font-size: 1.2rem;
   }
 
   .input-form-control {

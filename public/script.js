@@ -16,7 +16,6 @@ const currentYear = new Date().getFullYear();
 yearSpan.textContent = currentYear;
 
 ///////---------------------------------------------------//////////
-/////// --------------------------------------------------//////////
 
 document.addEventListener('DOMContentLoaded', () => {
   // Note-taking functionality
@@ -27,12 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const noteContent = document.getElementById('noteContent');
 
   let currentNoteId = null;
+  let currentNoteListItem = null;
+
+  let notesCache = [];
 
   // Function to fetch data from the backend
   const fetchData = async (newCreatedNote = false) => {
     try {
       const response = await fetch('/notes');
       const notes = await response.json();
+
+      notesCache = notes;
       notesList.innerHTML = ''; // Clear the list before rendering
 
       // IF no note exists, Get Started will appear
@@ -47,9 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         notesList.appendChild(createNoteMsg);
 
-        noteTitle.textContent = 'No Note';
-        noteContent.textContent =
-          'Click the New Note + button to create a note';
+        noteTitle.textContent = 'No note';
+        noteContent.value = 'Click the New Note + button to create a note';
         return;
       }
 
@@ -84,22 +87,28 @@ document.addEventListener('DOMContentLoaded', () => {
           (deleteButton.textContent = 'Delete'));
 
         newListEl.addEventListener('click', () => {
-          const allNotesLists = notesList.querySelectorAll('#notesList p');
-          allNotesLists.forEach((noteList) => {
+          const allNotesList = notesList.querySelectorAll('#notesList p');
+          allNotesList.forEach((noteList) => {
             noteList.style.backgroundColor = '#e9ecef';
           });
 
           newListEl.style.backgroundColor = '#719cc7';
 
-          noteTitle.textContent = note.title;
-          noteContent.textContent = note.content;
+          const selectedNote = notesCache.find(
+            (noteCache) => noteCache.id === note.id,
+          );
+
+          noteTitle.textContent = selectedNote.title;
+          noteContent.value = selectedNote.content;
           currentNoteId = note.id;
+          currentNoteListItem = newListEl;
         });
 
         wrapper.appendChild(newListEl);
         wrapper.appendChild(deleteButton);
         notesList.appendChild(wrapper);
 
+        // Auto open note for First Note and Created Note
         if (!newCreatedNote && index === 0) {
           newListEl.click();
         } else if (newCreatedNote && index === notes.length - 1) {
@@ -133,17 +142,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Save the note title and content to the backend
   document.getElementById('saveButton').addEventListener('click', async () => {
-    const title = titleInput.value.trim();
-    const content = contentInput.value.trim();
+    const noteTitle = titleInput.value.trim();
+    const noteContent = contentInput.value.trim();
 
-    if (!title || !content) {
+    if (!noteTitle || !noteContent) {
       alert('Please fill in both fields');
       return;
     }
 
     const newNote = {
-      title,
-      content,
+      title: noteTitle,
+      content: noteContent,
     };
 
     try {
@@ -161,6 +170,58 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error('Error adding data:', error);
     }
+  });
+
+  // Auto Save for Note Title and Note Content
+  let saveTimeout;
+
+  const autoSave = () => {
+    if (!currentNoteId) return;
+
+    clearTimeout(saveTimeout);
+
+    saveTimeout = setTimeout(async () => {
+      const updatedTitle = noteTitle.textContent.trim();
+      const updatedContent = noteContent.value.trim();
+
+      try {
+        const response = await fetch(`/notes/${currentNoteId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: updatedTitle,
+            content: updatedContent,
+          }),
+        });
+
+        if (response.ok) {
+          if (currentNoteListItem) {
+            currentNoteListItem.textContent = updatedTitle;
+          }
+
+          const noteIndex = notesCache.findIndex(
+            (noteCache) => noteCache.id === currentNoteId,
+          );
+          
+          if (noteIndex !== -1) {
+            notesCache[noteIndex].title = updatedTitle;
+            notesCache[noteIndex].content = updatedContent;
+          }
+        }
+      } catch (error) {
+        console.error('Auto-save failed:', error);
+      }
+    }, 300);
+  };
+
+  // Auto save when typing in title
+  noteTitle.addEventListener('input', () => {
+    autoSave();
+  });
+
+  // Auto save when typing in content
+  noteContent.addEventListener('input', () => {
+    autoSave();
   });
 
   // Fetch data on page load
