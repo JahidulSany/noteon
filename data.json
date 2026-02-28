@@ -1,10 +1,5 @@
 [
   {
-    "id": "c675eeb6-1e13-4a94-9e4c-b3f6ac68923e",
-    "title": "React",
-    "content": "A javascript library for building user interfaces"
-  },
-  {
     "id": "af92ee38-f47e-4861-9e9c-0287313eb7d5",
     "title": "Tailwind CSS",
     "content": "TailwindCSS is a utility-first CSS framework for rapidly building custom user interfaces. It provides a set of low-level utility classes that you can compose to build any design, directly in your markup."
